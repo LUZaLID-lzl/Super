@@ -1,0 +1,55 @@
+{
+  "name": "super-cat-toolbox",
+  "version": "0.1.0",
+  "description": "A lightweight Windows toolbox built with Electron and Vue.",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "dev:renderer": "vite",
+    "typecheck": "vue-tsc --noEmit",
+    "build": "vue-tsc --noEmit && vite build",
+    "start": "electron .",
+    "dist:win": "npm run build && electron-builder --win"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "electron": "^34.3.0",
+    "pinia": "^2.3.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0",
+    "vue-tsc": "^2.2.8",
+    "wait-on": "^8.0.2"
+  },
+  "build": {
+    "appId": "com.super.toolbox",
+    "productName": "Cat Toolbox",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "build/icon.*",
+      "app-data/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build/icon.ico",
+        "to": "icon.ico"
+      }
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": "nsis"
+    }
+  }
+}

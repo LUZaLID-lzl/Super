@@ -1,0 +1,13 @@
+import type { ToolConfig } from '@/types/app';
+
+export const defaultTools: ToolConfig[] = [
+  {
+    id: 'json-formatter',
+    name: 'JSON 格式化',
+    icon: '{}',
+    path: '/tools/json-formatter',
+    visible: true,
+    order: 10,
+    description: '格式化、压缩并校验 JSON 内容'
+  }
+];
